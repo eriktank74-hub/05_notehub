@@ -1,5 +1,5 @@
 import css from "./SearchBox.module.css";
-import type { InputEvent } from 'react'
+import type { InputEvent } from "react";
 
 type Props = {
   onInput: (event: InputEvent<HTMLInputElement>) => void;

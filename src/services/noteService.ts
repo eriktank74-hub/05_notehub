@@ -27,8 +27,8 @@ export type NewNote = {
   tag: "Todo" | "Work" | "Personal" | "Meeting" | "Shopping";
 };
 
-export const createNote = ({ title, content, tag }: NewNote) => {
-  return axios.post(
+export const createNote = async({ title, content, tag }: NewNote): Promise<Note> => {
+  const response = await axios.post<Note>(
     "https://notehub-public.goit.study/api/notes",
     {
       title,
@@ -41,9 +41,10 @@ export const createNote = ({ title, content, tag }: NewNote) => {
       },
     },
   );
+  return response.data;
 };
-export const deleteNote = (id: string) => {
-  return axios.delete(
+export const deleteNote = async(id: string): Promise<Note>  => {
+  const response = await axios.delete<Note>(
     `https://notehub-public.goit.study/api/notes/${id}`,
 
     {
@@ -52,4 +53,5 @@ export const deleteNote = (id: string) => {
       },
     },
   );
+  return response.data;
 };

@@ -3,11 +3,15 @@ import type { Note } from "../../types/note";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteNote } from "../../services/noteService";
 
-function NoteList({ notes }: { notes: Note[] }) {
-  const queryCient = useQueryClient();
-  const { mutate } = useMutation({
+interface NoteListProps {
+  notes: Note[]
+}
+
+function NoteList({ notes }: NoteListProps) {
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation<unknown, unknown, string>({
     onSuccess: () => {
-      queryCient.invalidateQueries({ queryKey: ["note"] });
+      queryClient.invalidateQueries({ queryKey: ["note"] });
     },
     mutationFn: (id: string) => {
       return deleteNote(id);

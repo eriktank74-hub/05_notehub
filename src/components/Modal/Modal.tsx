@@ -5,10 +5,10 @@ import type { ReactNode } from "react";
 
 interface ModalProps {
   onClose: () => void;
-  content: ReactNode;
+  children: ReactNode;
 }
 
-function Modal({ onClose, content }: ModalProps) {
+function Modal({ onClose, children }: ModalProps) {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -37,7 +37,7 @@ function Modal({ onClose, content }: ModalProps) {
       aria-modal="true"
     >
       <div className={css.modal} onClick={(event) => event.stopPropagation()}>
-        {content}
+        {children}
       </div>
     </div>,
 

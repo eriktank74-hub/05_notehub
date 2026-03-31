@@ -9,6 +9,7 @@ import NoteList from "../NoteList/NoteList";
 import Pagination from "../Pagination/Pagination";
 import NoteForm from "../NoteForm/NoteForm";
 
+
 function App() {
   const [query, setQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -55,10 +56,9 @@ function App() {
         }
       </header>
       {showModal && (
-        <Modal
-          onClose={hendleClose}
-          content={<NoteForm onClose={hendleClose} />}
-        />
+        <Modal onClose={hendleClose}>
+          <NoteForm onClose={hendleClose} />
+        </Modal>
       )}
       {data?.notes?.length && <NoteList notes={data?.notes} />}
     </div>

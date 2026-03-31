@@ -45,7 +45,7 @@ export const createNote = ({ title, content, tag }: NewNote) => {
 export const deleteNote = (id: string) => {
   return axios.delete(
     `https://notehub-public.goit.study/api/notes/${id}`,
-   
+
     {
       headers: {
         Authorization: `Bearer ${import.meta.env.VITE_NOTEHUB_TOKEN}`,

@@ -1,7 +1,7 @@
 import css from "./NoteList.module.css";
 import type { Note } from "../../types/note";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { deleteNote } from '../../services/noteService'
+import { deleteNote } from "../../services/noteService";
 
 function NoteList({ notes }: { notes: Note[] }) {
   const queryCient = useQueryClient();
@@ -22,7 +22,9 @@ function NoteList({ notes }: { notes: Note[] }) {
           <p className={css.content}>{note.content}</p>
           <div className={css.footer}>
             <span className={css.tag}>{note.tag}</span>
-            <button className={css.button} onClick={() => mutate(note.id)}>Delete</button>
+            <button className={css.button} onClick={() => mutate(note.id)}>
+              Delete
+            </button>
           </div>
         </li>
       ))}

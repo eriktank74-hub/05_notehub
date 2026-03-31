@@ -1,11 +1,11 @@
 import css from "./Modal.module.css";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 interface ModalProps {
   onClose: () => void;
-  content: ReactNode
+  content: ReactNode;
 }
 
 function Modal({ onClose, content }: ModalProps) {
@@ -30,8 +30,15 @@ function Modal({ onClose, content }: ModalProps) {
   }, []);
 
   return createPortal(
-    <div className={css.backdrop} onClick={onClose} role="dialog" aria-modal="true">
-      <div className={css.modal} onClick={(event) => event.stopPropagation()}>{content}</div>
+    <div
+      className={css.backdrop}
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className={css.modal} onClick={(event) => event.stopPropagation()}>
+        {content}
+      </div>
     </div>,
 
     document.body,

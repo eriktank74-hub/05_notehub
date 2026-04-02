@@ -16,7 +16,7 @@ function App() {
   const [showModal, setShowModal] = useState<boolean>(false);
 
   const { data } = useQuery({
-    queryKey: ["note", currentPage, query],
+    queryKey: ["notes", currentPage, query],
     queryFn: () => fetchNotes(currentPage, query),
     placeholderData: (prev) => prev,
   });
@@ -26,7 +26,7 @@ function App() {
     setCurrentPage(1)
   }, 1000);
 
-  const hendleOpen = () => {
+  const handleOpen = () => {
     setShowModal(true);
   };
 
@@ -34,7 +34,7 @@ function App() {
     setCurrentPage(selected + 1);
   };
 
-  const hendleClose = () => {
+  const handleClose = () => {
     setShowModal(false);
   };
 
@@ -52,14 +52,14 @@ function App() {
           />
         )}
         {
-          <button className={css.button} onClick={hendleOpen}>
+          <button className={css.button} onClick={handleOpen}>
             Create note +
           </button>
         }
       </header>
       {showModal && (
-        <Modal onClose={hendleClose}>
-          <NoteForm onClose={hendleClose} />
+        <Modal onClose={handleClose}>
+          <NoteForm onClose={handleClose} />
         </Modal>
       )}
       {!!data?.notes?.length && <NoteList notes={data?.notes} />}

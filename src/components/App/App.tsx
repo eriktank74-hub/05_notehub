@@ -18,10 +18,12 @@ function App() {
   const { data } = useQuery({
     queryKey: ["note", currentPage, query],
     queryFn: () => fetchNotes(currentPage, query),
+    placeholderData: (prev) => prev,
   });
 
   const onSearch = useDebouncedCallback((event) => {
     setQuery(event.target.value);
+    setCurrentPage(1)
   }, 1000);
 
   const hendleOpen = () => {
@@ -41,7 +43,7 @@ function App() {
   return (
     <div className={css.app}>
       <header className={css.toolbar}>
-        {<SearchBox onInput={onSearch} />}
+        {<SearchBox onChange={onSearch} />}
         {totalPages > 1 && (
           <Pagination
             totalPages={totalPages}

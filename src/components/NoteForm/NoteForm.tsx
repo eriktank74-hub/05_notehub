@@ -11,10 +11,11 @@ interface NoteFormProps {
 }
 
 function NoteForm({onClose}: NoteFormProps) {
-  const queryCient = useQueryClient();
+  const queryClient = useQueryClient();
   const { mutate } = useMutation({
     onSuccess: () => {
-      queryCient.invalidateQueries({ queryKey: ["note"] });
+      queryClient.invalidateQueries({ queryKey: ["note"] });
+      onClose()
     },
     mutationFn: (data: NewNote) => {
       return createNote(data);
@@ -22,7 +23,6 @@ function NoteForm({onClose}: NoteFormProps) {
   });
   const onSubmit = async(data: NewNote) => {
     await mutate(data);
-    onClose()
   };
 
   const formik = useFormik({

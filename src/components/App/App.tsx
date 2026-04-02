@@ -21,7 +21,7 @@ function App() {
     placeholderData: (prev) => prev,
   });
 
-  const onSearch = useDebouncedCallback((event) => {
+  const onSearch = useDebouncedCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);
     setCurrentPage(1)
   }, 1000);
@@ -62,7 +62,7 @@ function App() {
           <NoteForm onClose={hendleClose} />
         </Modal>
       )}
-      {data?.notes?.length && <NoteList notes={data?.notes} />}
+      {!!data?.notes?.length && <NoteList notes={data?.notes} />}
     </div>
   );
 }
